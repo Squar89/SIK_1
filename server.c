@@ -6,7 +6,7 @@
 #include <unistd.h>
 #include <stdlib.h>
 
-//#define BUFFER_SIZE   2000
+#define BUFFER_SIZE   2000
 #define QUEUE_LENGTH     5
 #define MAX_USHORT   65536
 
@@ -19,8 +19,8 @@ int main(int argc, char *argv[])
     struct sockaddr_in client_address;
     socklen_t client_address_len;
 
-    //char buffer[BUFFER_SIZE];
-    //ssize_t len, snd_len;
+    char buffer[BUFFER_SIZE];
+    ssize_t len, snd_len;
 
     /* check if server was run with correct parameters */
     if (argc != 2) {
