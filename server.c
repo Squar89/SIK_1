@@ -66,21 +66,21 @@ int main(int argc, char *argv[])
             return 1;
         }
         printf("Accepted connection\n");
-        /*
+        
         do {
             len = read(msg_sock, buffer, sizeof(buffer));
             if (len < 0) {
-                //syserr("reading from client socket");
+                fprintf(stderr, "Error reading from client\n");
             }
             else {
                 printf("read from socket: %zd bytes: %.*s\n", len, (int) len, buffer);
                 snd_len = write(msg_sock, buffer, len);
                 if (snd_len != len) {
-                    //syserr("writing to client socket");
+                    fprintf(stderr, "Error writing to client\n");
                 }
             }
         } while (len > 0);
-        */
+
         printf("ending connection\n");
         if (close(msg_sock) < 0) {
             //syserr("close");
