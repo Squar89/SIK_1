@@ -20,6 +20,8 @@ int main(int argc, char *argv[])
     socklen_t client_address_len;
 
     char buffer[BUFFER_SIZE];
+    char main_menu[] = "OpcjaA\nOpcjaB\nKoniec";
+    char B_menu[] = "OpcjaB1\nOpcjaB2\nWstecz";
     ssize_t len, snd_len;
 
     /* check if server was run with correct parameters */
@@ -67,6 +69,22 @@ int main(int argc, char *argv[])
         }
         printf("Accepted connection\n");
         
+        snd_len = write(msg_sock, main_menu, strlen(main_menu));
+        if (snd_len != len) {
+            fprintf(stderr, "Error writing to client\n");
+        }
+
+        printf("Menu sent\n");
+
+        len = read(msg_sock, buffer, sizeof(buffer));
+            if (len < 0) {
+                fprintf(stderr, "Error reading from client\n");
+            }
+            else {
+                printf("read from socket: %zd bytes: %.*s\n", len, (int) len, buffer);
+            }
+
+        /*
         do {
             len = read(msg_sock, buffer, sizeof(buffer));
             if (len < 0) {
@@ -80,10 +98,11 @@ int main(int argc, char *argv[])
                 }
             }
         } while (len > 0);
-
+        */
+    
         printf("ending connection\n");
         if (close(msg_sock) < 0) {
-            //syserr("close");
+            fprintf(stderr, "Error at close()");
         }
     }
 
