@@ -70,7 +70,7 @@ int main(int argc, char *argv[])
         printf("Accepted connection\n");
         
         snd_len = write(msg_sock, main_menu, strlen(main_menu));
-        if (snd_len != len) {
+        if (snd_len != strlen(main_menu)) {
             fprintf(stderr, "Error writing to client\n");
         }
 
