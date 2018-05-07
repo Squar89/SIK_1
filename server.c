@@ -52,6 +52,7 @@ int main(int argc, char *argv[]) {
 
     for (;;) {
         client_address_len = sizeof(client_address);
+        /* wait for client */
         inc_sock = accept(sock, (struct sockaddr *) &client_address, &client_address_len);
         if (inc_sock < 0) {
             fprintf(stderr, "Error at accept()\n");
@@ -72,7 +73,7 @@ int main(int argc, char *argv[]) {
         }
     
         /* close connection */
-        printf("ending connection\n");
+        printf("Ending connection\n");
         if (close(inc_sock) < 0) {
             fprintf(stderr, "Error at close()");
             return 1;
